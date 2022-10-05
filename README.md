@@ -2,7 +2,7 @@
 
 ngx_php7 - Embedded php7 scripting language for nginx module. Mainline development version of the ngx_php.
 
-- Official: https://github.com/rryqszq4/ngx_php7
+- Official: https://github.com/rryqszq4/ngx-php (original name rryqszq4/ngx_php7)
 - Build: https://github.com/nginx-with-docker/ngx_http_php_module-src
 ## Nginx Images
 
@@ -15,6 +15,13 @@ ngx_php7 - Embedded php7 scripting language for nginx module. Mainline developme
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td>1.23.1</td>
+            <td>73ef8b1 / master</td>
+            <td><ul>
+                <li>docker pull soulteary/prebuilt-nginx-modules:ngx-1.23.1-php-master-alpine</li>
+            </ul></td>
+        </tr>
         <tr>
             <td>1.21.1</td>
             <td>8cbb7fb / master</td>

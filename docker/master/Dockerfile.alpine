@@ -11,7 +11,7 @@ ARG DEVEL_KIT_VERSION=0.3.1
 ARG DEVEL_KIT_NAME=ngx_devel_kit
 
 # RUN cat /etc/apk/repositories | sed -e "s/dl-cdn.alpinelinux.org/mirrors.aliyun.com/" | tee /etc/apk/repositories
-RUN apk --no-cache add curl gcc g++ make musl-dev linux-headers gd-dev geoip-dev libxml2-dev libxslt-dev openssl-dev paxmark pcre-dev perl-dev pkgconf zlib-dev libedit-dev ncurses-dev php7-dev php7-embed
+RUN apk --no-cache add curl gcc g++ make musl-dev linux-headers gd-dev geoip-dev libxml2-dev libxslt-dev openssl-dev pcre-dev perl-dev pkgconf zlib-dev libedit-dev ncurses-dev php8-dev php8-embed
 ENV PHP_LIB=/usr/lib
 
 RUN apk add git unzip
@@ -35,5 +35,9 @@ RUN cd /usr/src && \
 
 FROM scratch
 
-COPY --from=Builder /usr/src/nginx/objs/ndk_http_module.so /
-COPY --from=Builder /usr/src/nginx/objs/ngx_http_php_module.so /
+COPY --from=Builder /usr/lib/libphp.so          /usr/lib/
+COPY --from=Builder /usr/lib/libargon2.so.1     /usr/lib/
+COPY --from=Builder /lib/libz.so.1              /lib/
+COPY --from=Builder /etc/php8/php.ini           /etc/php8/
+COPY --from=Builder /usr/src/nginx/objs/ndk_http_module.so      /etc/nginx/modules/
+COPY --from=Builder /usr/src/nginx/objs/ngx_http_php_module.so  /etc/nginx/modules/
